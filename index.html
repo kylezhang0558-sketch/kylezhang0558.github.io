@@ -946,6 +946,93 @@ body.edit-active [contenteditable]:focus { outline: 1.5px solid var(--accent-rus
 }
 
 /* ===========================================
+   VALUE CREATION — EXECUTIVE REDESIGN
+   =========================================== */
+
+/* Inline shift strip: no boxes, clean two rows */
+.vc-shift-strip {
+  display: flex; flex-direction: column;
+  gap: clamp(0.3rem, 0.65vw, 0.5rem);
+  margin-top: clamp(0.5rem, 1.1vw, 0.9rem);
+  max-width: min(700px, 84vw);
+  padding-bottom: clamp(0.5rem, 1.1vw, 0.9rem);
+  border-bottom: 1px solid var(--accent-rule);
+}
+.vc-shift-row {
+  display: flex; align-items: baseline;
+  gap: clamp(0.5rem, 1vw, 0.85rem);
+}
+.vc-shift-label {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(0.68rem, 0.9vw, 0.8rem);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  white-space: nowrap; flex-shrink: 0; min-width: 5.5em;
+}
+.vc-shift-label.reduce { color: var(--accent-rust); }
+.vc-shift-label.expand { color: #2a6b3a; }
+.vc-shift-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.72rem, 0.95vw, 0.86rem);
+  color: var(--text-secondary); line-height: 1.5;
+}
+
+/* Evidence cards — metric-forward, minimal */
+.vc-evidence {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  max-width: min(700px, 84vw);
+  margin-top: clamp(0.6rem, 1.3vw, 1.1rem);
+  border-top: 2px solid var(--text-primary);
+}
+.vc-ev-card {
+  padding: clamp(0.65rem, 1.3vw, 1.1rem) clamp(0.5rem, 1vw, 0.85rem)
+           clamp(0.65rem, 1.3vw, 1.1rem) 0;
+  border-right: 1px solid var(--accent-rule);
+  padding-right: clamp(0.65rem, 1.3vw, 1.1rem);
+  transition: transform 0.22s var(--ease-expo);
+}
+.vc-ev-card:last-child { border-right: none; padding-right: 0; }
+.vc-ev-card:not(:first-child) { padding-left: clamp(0.65rem, 1.3vw, 1.1rem); }
+.vc-ev-metric {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1; color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+.vc-ev-area {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(0.74rem, 1vw, 0.9rem);
+  color: var(--text-primary);
+  margin-top: 0.4em; line-height: 1.25;
+}
+.vc-ev-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.68rem, 0.9vw, 0.8rem);
+  color: var(--text-secondary); line-height: 1.45;
+  margin-top: 0.25em;
+}
+.vc-ev-source {
+  font-family: var(--font-body); font-weight: 600;
+  font-size: clamp(0.6rem, 0.76vw, 0.7rem);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent-rust);
+  margin-top: clamp(0.4rem, 0.8vw, 0.65rem);
+  padding-top: 0.5em;
+  border-top: 1px solid var(--accent-rule);
+}
+
+/* Bottom closing line */
+.vc-bottom-line {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(0.8rem, 1.1vw, 0.98rem);
+  color: var(--text-tertiary); line-height: 1.55;
+  max-width: min(54ch, 78vw);
+  margin-top: clamp(0.6rem, 1.3vw, 1.1rem);
+  padding-top: clamp(0.5rem, 1vw, 0.8rem);
+  border-top: 1px solid var(--accent-rule);
+}
+
+/* ===========================================
    TWO-COLUMN SLIDE LAYOUT
    Eliminates empty right side on content slides.
    Left: main content. Right: decorative aside.
@@ -1856,34 +1943,45 @@ body.edit-active [contenteditable]:focus { outline: 1.5px solid var(--accent-rus
 <section class="slide ruled-bg slide-two-col" aria-label="Action 5 — Value Creation">
   <div class="slide-content slide-content-left">
     <p class="section-num reveal">Action 5 — Value Creation</p>
-    <h2 class="content-heading reveal">Turn time saved<br><em>into better work</em></h2>
+    <h2 class="content-heading reveal" style="margin-bottom:0.1em;">Saving time is not<br><em>the goal — reinvesting it is</em></h2>
     <div class="rule reveal"></div>
-    <ul class="bullet-list reveal">
-      <li>The real value is <strong>not just speed</strong> — it is how teams use recovered time to create better business outcomes</li>
-      <li>Use freed-up time for: deeper deal and portfolio analysis, stronger partner communication, better meeting preparation, and faster follow-up</li>
-      <li><strong>Leaders:</strong> redirect team effort toward decision-making, partner support, risk review, and process improvement</li>
-      <li><strong>Individuals:</strong> focus more on judgment, quality, collaboration, and stakeholder responsiveness</li>
-    </ul>
 
-    <div class="vc-buckets reveal">
-      <div class="vc-bucket">
-        <div class="vc-num">01</div>
-        <div class="vc-title">Deal &amp; Portfolio</div>
-        <div class="vc-items">Deeper analysis <span class="vc-dot">·</span> Risk review <span class="vc-dot">·</span> Pattern spotting</div>
+    <!-- Inline shift strip: no heavy boxes -->
+    <div class="vc-shift-strip reveal">
+      <div class="vc-shift-row">
+        <span class="vc-shift-label reduce">↓ Reduce</span>
+        <span class="vc-shift-text">Drafting &amp; formatting · Routine summaries · Repetitive follow-up · Meeting notes</span>
       </div>
-      <div class="vc-bucket">
-        <div class="vc-num">02</div>
-        <div class="vc-title">Partner Communication</div>
-        <div class="vc-items">Stronger follow-up <span class="vc-dot">·</span> Clearer proposals <span class="vc-dot">·</span> Faster responses</div>
-      </div>
-      <div class="vc-bucket">
-        <div class="vc-num">03</div>
-        <div class="vc-title">Leadership &amp; Teams</div>
-        <div class="vc-items">Better decisions <span class="vc-dot">·</span> Process improvement <span class="vc-dot">·</span> Coaching time</div>
+      <div class="vc-shift-row">
+        <span class="vc-shift-label expand">↑ Reinvest</span>
+        <span class="vc-shift-text">Deal analysis · Client strategy · Risk review · Decision support · Coaching</span>
       </div>
     </div>
 
-    <p class="vc-example reveal">A DLL Relationship Manager used Copilot to draft a portfolio update in 20 minutes instead of two hours — the time saved went directly into client strategy preparation.</p>
+    <!-- Evidence cards: big metric, clean, consulting-style -->
+    <div class="vc-evidence reveal">
+      <div class="vc-ev-card">
+        <div class="vc-ev-metric">95%</div>
+        <div class="vc-ev-area">Deeper Analysis</div>
+        <div class="vc-ev-desc">Faster data extraction &amp; comparative insight</div>
+        <div class="vc-ev-source">S&amp;P Global Commodity Insights</div>
+      </div>
+      <div class="vc-ev-card">
+        <div class="vc-ev-metric">4 hrs</div>
+        <div class="vc-ev-area">Stakeholder Support</div>
+        <div class="vc-ev-desc">Saved per legal user per week · faster contract turnaround</div>
+        <div class="vc-ev-source">Vodafone</div>
+      </div>
+      <div class="vc-ev-card">
+        <div class="vc-ev-metric">2×</div>
+        <div class="vc-ev-area">Planning &amp; Decisions</div>
+        <div class="vc-ev-desc">Faster decisions · investment turnaround 12 → 6 months</div>
+        <div class="vc-ev-source">Public Investment Corporation</div>
+      </div>
+    </div>
+
+    <!-- Closing statement -->
+    <p class="vc-bottom-line reveal">AI creates value when recovered time is reinvested into judgment-intensive work — not just when tasks are completed faster.</p>
   </div>
 
   <aside class="slide-aside reveal">
@@ -2299,11 +2397,43 @@ class InlineEditor {
 }());
 
 /* ===========================================
+   VALUE CREATION — engagement choice buttons
+   =========================================== */
+(function setupVcChoices() {
+  const slide   = document.querySelector('[aria-label="Action 5 — Value Creation"]');
+  if (!slide) return;
+  const choices = slide.querySelectorAll('.vc-choice');
+  const hint    = document.getElementById('vcChoiceHint');
+
+  choices.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wasSelected = btn.classList.contains('vc-selected');
+      choices.forEach(b => b.classList.remove('vc-selected'));
+      if (!wasSelected) {
+        btn.classList.add('vc-selected');
+        if (hint) hint.classList.add('hidden');
+      } else {
+        if (hint) hint.classList.remove('hidden');
+      }
+    });
+  });
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) {
+        choices.forEach(b => b.classList.remove('vc-selected'));
+        if (hint) hint.classList.remove('hidden');
+      }
+    });
+  }, { threshold: 0.3 }).observe(slide);
+}());
+
+/* ===========================================
    SPRING BOUNCE — buttons & interactive cards
    Adds .bounce class on pointerdown, removes after animation.
    =========================================== */
 (function setupSpring() {
-  const TARGETS = '.role-btn, .formula-pill, .nav-dot, .data-card, .edit-toggle, .pf-block';
+  const TARGETS = '.role-btn, .formula-pill, .nav-dot, .data-card, .edit-toggle, .pf-block, .vc-choice';
   document.addEventListener('pointerdown', e => {
     const el = e.target.closest(TARGETS);
     if (!el) return;
